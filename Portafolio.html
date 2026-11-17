@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Portafolio · Desarrollador front-end</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap">
+<style>
+:root{--bg:#0b1021;--win:#0e1530;--line:#1d2a4d;--tx:#8ea0c9;--hi:#e6ecff;--ind:#6f7bff;--teal:#2fd4c0;--org:#f2a65a;--pink:#e5568b;
+box-sizing:border-box;color-scheme:dark;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;min-height:100vh;background:radial-gradient(60% 50% at 70% 30%,#16705f55,transparent 70%),radial-gradient(50% 60% at 30% 80%,#3b2fbf55,transparent 70%),var(--bg);color:var(--tx);font:14px/1.6 "Fira Code",ui-monospace,Menlo,Consolas,monospace;display:flex;align-items:center;justify-content:center;padding:16px}
+.win{width:100%;max-width:1100px;height:min(680px,calc(100vh - 32px));min-height:520px;background:var(--win);border:1px solid var(--line);border-radius:8px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 30px 80px #0008}
+nav{display:flex;border-bottom:1px solid var(--line);overflow-x:auto;flex:none}
+nav a{color:var(--tx);text-decoration:none;padding:12px 22px;border-right:1px solid var(--line);white-space:nowrap;border-bottom:2px solid transparent}
+nav a.me{margin-right:auto;border-right:1px solid var(--line)}
+nav a.last{border-right:0;border-left:1px solid var(--line)}
+nav a.on{color:var(--hi);border-bottom-color:var(--org)}
+nav a:hover{color:var(--hi)}
+nav a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,a:focus-visible{outline:2px solid var(--ind);outline-offset:-2px}
+main{flex:1;overflow:auto;position:relative}
+section{display:none;height:100%}
+section.on{display:block}
+footer{flex:none;border-top:1px solid var(--line);display:flex;align-items:center;font-size:12px}
+footer span{padding:10px 16px;border-right:1px solid var(--line)}
+footer a{color:var(--tx);padding:10px 16px;border-right:1px solid var(--line);text-decoration:none}
+footer a:hover{color:var(--hi)}
+.k{color:var(--ind)}.g{color:var(--teal)}.o{color:var(--org)}.c{color:#51608a}.h{color:var(--hi)}
+/* hello */
+.hello{display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:32px;padding:32px 48px;height:100%}
+.hello h1{font-size:clamp(28px,4.5vw,44px);font-weight:500;color:var(--hi);margin:4px 0;line-height:1.15}
+.hello .role{color:var(--ind);font-size:18px}
+.panel{background:linear-gradient(135deg,#1c8a7a,#233c9c);border-radius:10px;padding:14px;box-shadow:0 20px 50px #0006}
+.panel pre{margin:0;background:#0a1128;border-radius:6px;padding:16px;font:inherit;font-size:12.5px;overflow:auto;line-height:1.7}
+.game{display:flex;gap:14px;flex-wrap:wrap;justify-content:center;justify-self:center}
+.board{position:relative;flex:none}
+#cv{display:block;border-radius:6px;background:#0a1128;max-width:100%}
+.ctl{display:flex;flex-direction:column;gap:12px;font-size:12px;min-width:118px}
+.keys{background:#0a1128;border-radius:6px;padding:10px;display:grid;gap:6px;justify-items:center}
+.keys div{display:flex;gap:6px}
+.keys button{width:34px;height:26px;background:#16203f;border:0;border-radius:4px;color:var(--hi);cursor:pointer;font:inherit}
+.keys button:hover{background:#2a3b6b}
+.dots{display:grid;grid-template-columns:repeat(5,10px);gap:8px;background:#0a1128;border-radius:6px;padding:10px}
+.dots i{width:10px;height:10px;border-radius:50%;background:var(--teal)}
+.dots i.off{background:#1d2a4d}
+#go{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--org);color:#0b1021;border:0;border-radius:6px;padding:8px 14px;font:inherit;font-weight:500;cursor:pointer;white-space:nowrap}
+#skip{align-self:flex-end;margin-top:auto;background:transparent;border:1px solid var(--line);color:var(--hi);border-radius:5px;padding:4px 10px;font:inherit;font-size:12px;cursor:pointer}
+#msg{min-height:1.4em;color:var(--org)}
+/* about */
+.about{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.about>div{padding:24px 28px;overflow:auto}
+.about>div+div{border-left:1px solid var(--line)}
+.ln{display:grid;grid-template-columns:34px 1fr}
+.ln i{color:#3a4770;font-style:normal;text-align:right;padding-right:14px;user-select:none}
+.card{background:#0a1128;border:1px solid var(--line);border-radius:8px;padding:14px;margin-bottom:14px}
+.card b{color:var(--ind);font-weight:500}
+/* projects */
+.proj{display:grid;grid-template-columns:200px 1fr;height:100%}
+.side{border-right:1px solid var(--line);padding:14px;overflow:auto}
+.side h3{margin:0 0 10px;font-size:13px;color:var(--hi);font-weight:500}
+.side label{display:flex;gap:10px;align-items:center;padding:3px 0;cursor:pointer}
+.side input{accent-color:var(--ind)}
+.grid{padding:24px;display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:20px;align-content:start}
+.pc{background:#0a1128;border:1px solid var(--line);border-radius:8px;overflow:hidden;display:flex;flex-direction:column}
+.pc h4{margin:0;padding:12px 14px 0;font-weight:400;font-size:13px}
+.pc h4 b{color:var(--ind);font-weight:500}
+.thumb{height:110px;margin:10px 14px;border-radius:6px;display:grid;place-items:center;color:#fff9;font-size:22px}
+.pc p{margin:0 14px 12px;font-size:12.5px;flex:1}
+.tags{padding:0 14px;color:var(--teal);font-size:12px;margin-bottom:10px}
+.btn{display:inline-block;margin:0 14px 14px;background:#1d2a4d;color:var(--hi);padding:5px 12px;border-radius:5px;font:inherit;font-size:12px;text-decoration:none;border:0;cursor:pointer;align-self:flex-start}
+.btn:hover{background:#2a3b6b}
+.empty{padding:24px;color:#51608a}
+/* contact */
+.contact{display:grid;grid-template-columns:1fr 1fr;height:100%}
+.contact>div{padding:28px;overflow:auto}
+.contact>div+div{border-left:1px solid var(--line)}
+form{max-width:340px;margin:auto;display:grid;gap:12px}
+form label{display:grid;gap:4px}
+input,textarea{background:#0a1128;border:1px solid var(--line);border-radius:5px;color:var(--hi);font:inherit;padding:8px 10px}
+textarea{min-height:110px;resize:vertical}
+form button{background:#1d2a4d;color:var(--hi);border:0;border-radius:5px;padding:9px;font:inherit;cursor:pointer}
+form button:hover{background:#2a3b6b}
+#ok{color:var(--teal);min-height:1.4em;margin:0}
+@media(max-width:760px){
+ body{padding:0;align-items:stretch}
+ .win{height:100vh;border-radius:0;border-left:0;border-right:0}
+ .hello,.about,.contact,.proj{grid-template-columns:1fr;height:auto}
+ .hello{padding:28px 20px}
+ .about>div+div,.contact>div+div{border-left:0;border-top:1px solid var(--line)}
+ .side{border-right:0;border-bottom:1px solid var(--line)}
+ footer span{display:none}
+}
+</style>
+</head>
+<body>
+<div class="win">
+<nav aria-label="Secciones">
+ <a class="me" href="#hello">tu-nombre</a>
+ <a data-s="hello" href="#hello">_inicio</a>
+ <a data-s="about" href="#about">_sobre-mí</a>
+ <a data-s="projects" href="#projects">_proyectos</a>
+ <a class="last" data-s="contact" href="#contact">_contacto</a>
+</nav>
+<main>
+<section id="hello"><div class="hello">
+ <div>
+  <div>Hola, soy</div>
+  <h1>Daiver Duran</h1>
+Formación :
+ADSO SENA
+<br>
+Ciudad :Itagüí
+  <div class="role">&gt; Desarrollador Full Stack</div>
+  <p class="c" style="margin-top:36px">// mira mis proyectos en la pestaña de arriba<br>// o encuéntrame en GitHub:<br><span class="k">const</span> <span class="g">githubLink</span> = <span class="o">“https://github.com/Dainod”</span></p>
+ </div>
+ <div class="panel game">
+  <div class="board"><canvas id="cv" width="220" height="320" aria-label="Juego de la culebrita"></canvas><button id="go" type="button">start-game</button></div>
+  <div class="ctl">
+   <div class="keys"><span class="c">// usa las flechas<br>// del teclado</span>
+    <button type="button" data-d="u" aria-label="Arriba">▲</button>
+    <div><button type="button" data-d="l" aria-label="Izquierda">◀</button><button type="button" data-d="d" aria-label="Abajo">▼</button><button type="button" data-d="r" aria-label="Derecha">▶</button></div>
+   </div>
+   <div><span class="c">// comida restante</span><div class="dots" id="dots"></div></div>
+   <div id="msg" role="status"></div>
+   <button id="skip" type="button">skip</button>
+  </div>
+ </div>
+</div></section>
+
+<section id="about"><div class="about">
+ <div>
+  <div class="ln"><i>1</i><span class="c">/**</span></div>
+  <div class="ln"><i>2</i><span class="c"> * SOBRE MI</span></div>
+  <div class="ln"><i>3</i><span class="c"> * Soy estudiante y desarrollador me encanta todo lo relacionado con la programación y el diseño de interfaces.</span></div>
+  <div class="ln"><i>4</i><span class="c"> * Me gusta crear o trabajar en proyectos</span></div>
+  <div class="ln"><i>5</i><span class="c"> * Amo la Automatización de procesos.</span></div>
+  <div class="ln"><i>6</i><span class="c"> * Soy apasionado por la tecnología y el aprendizaje continuo.</span></div>
+  <div class="ln"><i>4</i><span class="c">* Me encantan los videojuegos y me ilusionaria trabajar para uno.</span></div>
+  <div class="ln"><i>7</i><span class="c"> *</span></div>
+  <div class="ln"><i>8</i><span class="c"> *Actualmente estoy estudiando Analisis y Desarrollo de Software en el Sena y trabajando en proyectos personales.</span></div>
+  <div class="ln"><i>9</i><span class="c"> */</span></div>
+ </div>
+ <div>
+  <div class="c" style="margin-bottom:14px">// tecnologías que uso</div>
+  <div class="card"><b>Lenguajes y frameworks</b><br>Read Native · JavaScript · TypeScript · Node.js · Java · Python</div>
+  <div class="card"><b>Datos e infraestructura</b><br>PostgreSQL · SQL · Prisma · Docker · Railway</div>
+  <div class="card"><b>Automatización e IA</b><br>n8n · Ollama · Extracción de datos con IA</div>
+ </div>
+</div></section>
+
+<section id="projects"><div class="proj">
+ <div class="side"><h3>▾ tecnologías</h3>
+  <div id="flt"></div>
+  
+  
+  
+ </div>
+ <div class="grid" id="grid"></div>
+</div></section>
+
+<section id="contact"><div class="contact">
+ <div>
+  <form id="f">
+   <label>_nombre:<input name="n" autocomplete="name" value=""></label>
+   <label>_correo:<input name="e" type="email" autocomplete="email"></label>
+   <label>_mensaje:<textarea name="m"></textarea></label>
+   <button type="submit">enviar-mensaje</button>
+   <p id="ok" role="status"></p>
+  </form>
+ </div>
+ <div><pre id="code" style="margin:0;font:inherit;white-space:pre-wrap"></pre></div>
+</div></section>
+</main>
+<footer><span>encuéntrame en:</span><a href="https://github.com/Dainod" target="_blank" rel="noopener">github</a><a href="https://www.linkedin.com/in/tu-usuario" target="_blank" rel="noopener">linkedin</a><a href="mailto:tu@correo.com">correo</a></footer>
+</div>
+<script>
+var P=[
+ {n:"onlybus",t:["JavaScript","Node.js"],d:"App universitaria para ver la ubicación de los buses en tiempo real usando GPS.",c:"linear-gradient(135deg,#2fd4c0,#233c9c)",i:"🚌"},
+ {n:"sicot",t:["TypeScript","Node.js","PostgreSQL","n8n","Ollama","Railway","Docker"],d:"Gestión de contratos del SENA automatización en n8n, extrae datos por sí sola y los usa dentro del sistema..",c:"linear-gradient(135deg,#e5568b,#3b2fbf)",i:"◈"},
+ {n:"procesos-automatizados",t:["n8n","Ollama","Python"],d:"Scripts que automatizan tareas repetitivas. Cuéntanos cuáles.",c:"linear-gradient(135deg,#f2a65a,#7a3b9c)",i:"⚙"}
+];
+var $=function(s,r){return(r||document).querySelector(s)};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function draw(){
+ var on=[].map.call(document.querySelectorAll(".side input:checked"),function(x){return x.value});
+ var list=P.filter(function(p){return p.t.some(function(t){return on.indexOf(t)>-1})});
+ $("#grid").innerHTML=list.length?list.map(function(p,i){return '<article class="pc"><h4><b>Proyecto '+(i+1)+'</b> // _'+p.n+'</h4><div class="thumb" style="background:'+p.c+'">'+p.i+'</div><div class="tags">'+p.t.join(" · ")+'</div><p>'+esc(p.d)+'</p><a class="btn" href="#">ver-proyecto</a></article>'}).join(""):'<div class="empty">// marca una tecnología para ver proyectos</div>';
+}
+var T=["Flutter","JavaScript","TypeScript","Node.js","Java","Python","PostgreSQL","SQL","Prisma","Docker","Railway","n8n","Ollama","Extracción de datos con IA"];
+$("#flt").innerHTML=T.map(function(t){return '<label><input type="checkbox" value="'+t+'" checked> '+t+'</label>'}).join("");
+document.querySelectorAll(".side input").forEach(function(x){x.addEventListener("change",draw)});
+draw();
+function route(){
+ var h=(location.hash||"#hello").slice(1);if(!$("#"+h)||!$("#"+h).matches("section"))h="hello";
+ document.querySelectorAll("section").forEach(function(s){s.classList.toggle("on",s.id===h)});
+ document.querySelectorAll("nav a[data-s]").forEach(function(a){a.classList.toggle("on",a.dataset.s===h)});
+}
+addEventListener("hashchange",route);route();
+(function(){
+ var cv=$("#cv"),x=cv.getContext("2d"),W=11,H=16,S=20,sn,dir,nd,food,left,tm=null;
+ var D={u:{x:0,y:-1},d:{x:0,y:1},l:{x:-1,y:0},r:{x:1,y:0}},K={ArrowUp:"u",ArrowDown:"d",ArrowLeft:"l",ArrowRight:"r"};
+ function place(){do{food={x:Math.floor(Math.random()*W),y:Math.floor(Math.random()*H)}}while(sn.some(function(s){return s.x===food.x&&s.y===food.y}))}
+ function dots(){var h="";for(var i=0;i<10;i++)h+='<i class="'+(i<10-left?"off":"")+'"></i>';$("#dots").innerHTML=h}
+ function draw(){
+  x.fillStyle="#0a1128";x.fillRect(0,0,cv.width,cv.height);
+  x.fillStyle="#2fd4c0";x.beginPath();x.arc(food.x*S+S/2,food.y*S+S/2,5,0,7);x.fill();
+  sn.forEach(function(s,i){x.fillStyle=i?"#1fa592":"#2fd4c0";x.fillRect(s.x*S+2,s.y*S+2,S-4,S-4)});
+ }
+ function stop(t,b){clearInterval(tm);tm=null;$("#go").hidden=false;$("#go").textContent=b||"start-game";$("#msg").textContent=t||""}
+ function reset(){sn=[{x:5,y:8},{x:5,y:9},{x:5,y:10}];dir=nd=D.u;left=10;place();dots();draw()}
+ function tick(){
+  if(!$("#hello").classList.contains("on")){stop();return}
+  dir=nd;var h={x:sn[0].x+dir.x,y:sn[0].y+dir.y};
+  if(h.x<0||h.y<0||h.x>=W||h.y>=H||sn.some(function(s){return s.x===h.x&&s.y===h.y})){stop("¡Chocaste! Inténtalo otra vez.","play-again");return}
+  sn.unshift(h);
+  if(h.x===food.x&&h.y===food.y){left--;dots();if(!left){draw();stop("¡Ganaste! Ya puedes ver mis proyectos.","play-again");return}place()}else sn.pop();
+  draw();
+ }
+ function turn(k){var n=D[k];if(n.x+dir.x||n.y+dir.y)nd=n}
+ $("#go").addEventListener("click",function(){reset();this.hidden=true;$("#msg").textContent="";tm=setInterval(tick,130)});
+ $("#skip").addEventListener("click",function(){reset();stop("","start-game");location.hash="#projects"});
+ document.querySelectorAll("[data-d]").forEach(function(b){b.addEventListener("click",function(){if(tm)turn(b.dataset.d)})});
+ document.addEventListener("keydown",function(e){if(tm&&K[e.key]){e.preventDefault();turn(K[e.key])}});
+ addEventListener("hashchange",function(){if(tm)stop()});
+ reset();
+})();
+var f=$("#f");
+function code(){
+ var d=new Date().toDateString();
+ $("#code").innerHTML='<span class="k">const</span> mensaje = {\n  nombre: <span class="o">"'+esc(f.n.value)+'"</span>,\n  correo: <span class="o">"'+esc(f.e.value)+'"</span>,\n  mensaje: <span class="o">"'+esc(f.m.value)+'"</span>,\n  fecha: <span class="o">"'+d+'"</span>\n}\n\n<span class="c">// al enviar se abre tu app de correo</span>';
+}
+f.addEventListener("input",code);code();
+f.addEventListener("submit",function(e){
+ e.preventDefault();
+ var b=encodeURIComponent(f.m.value+"\n\n— "+f.n.value+" ("+f.e.value+")");
+ location.href="mailto:tu@correo.com?subject="+encodeURIComponent("Contacto desde tu portafolio")+"&body="+b;
+ $("#ok").textContent="Abriendo tu app de correo…";
+});
+</script>
+</body>
+</html>

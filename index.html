@@ -188,7 +188,7 @@ function draw(){
  var list=P.filter(function(p){return p.t.some(function(t){return on.indexOf(t)>-1})});
  $("#grid").innerHTML=list.length?list.map(function(p,i){return '<article class="pc"><h4><b>Proyecto '+(i+1)+'</b> // _'+p.n+'</h4><div class="thumb" style="background:'+p.c+'">'+p.i+'</div><div class="tags">'+p.t.join(" · ")+'</div><p>'+esc(p.d)+'</p><a class="btn" href="#">ver-proyecto</a></article>'}).join(""):'<div class="empty">// marca una tecnología para ver proyectos</div>';
 }
-var T=["Flutter","JavaScript","TypeScript","Node.js","Java","Python","PostgreSQL","SQL","Prisma","Docker","Railway","n8n","Ollama","Extracción de datos con IA"];
+var T=["JavaScript","TypeScript","Node.js","Java","Python","PostgreSQL","SQL","Prisma","Docker","Railway","n8n","Ollama","Extracción de datos con IA"];
 $("#flt").innerHTML=T.map(function(t){return '<label><input type="checkbox" value="'+t+'" checked> '+t+'</label>'}).join("");
 document.querySelectorAll(".side input").forEach(function(x){x.addEventListener("change",draw)});
 draw();
